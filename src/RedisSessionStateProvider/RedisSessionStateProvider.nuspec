@@ -24,7 +24,7 @@
     </metadata>
   <files>
     <file src="web.config.transform" target="content\net40\web.config.transform" />
-    <file src="..\..\bin\Release\Signed\v4.0\Microsoft.Web.RedisSessionStateProvider.dll" target="lib\net40\Microsoft.Web.RedisSessionStateProvider.dll" />
+    <file src="..\..\bin\Release\Microsoft.Web.RedisSessionStateProvider\v4.0\Microsoft.Web.RedisSessionStateProvider.dll" target="lib\net40\Microsoft.Web.RedisSessionStateProvider.dll" />
     <file src="..\..\bin\Release\Microsoft.Web.RedisSessionStateProvider\v4.0\Microsoft.Web.RedisSessionStateProvider.pdb" target="lib\net40\Microsoft.Web.RedisSessionStateProvider.pdb" />
     <file src="Readme.txt" target="Readme.txt" /> 
   </files>
