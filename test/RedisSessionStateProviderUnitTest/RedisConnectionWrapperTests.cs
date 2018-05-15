@@ -156,7 +156,7 @@ namespace Microsoft.Web.Redis.Tests
             RedisConnectionWrapper redisConn = new RedisConnectionWrapper(Utility.GetDefaultConfigUtility(), id);
             redisConn.redisConnection = A.Fake<IRedisClientConnection>();
 
-            object[] sessionData = { "Key", RedisUtility.GetBytesFromObject("value") };
+            object[] sessionData = { "Key", RedisUtility.GetBytesFromObject("Key", "value") };
             object[] returnFromRedis = { lockTime.Ticks.ToString(), sessionData, "15", false };
             ChangeTrackingSessionStateItemCollection sessionDataReturn = Utility.GetChangeTrackingSessionStateItemCollection();
             sessionDataReturn["key"] = "value";
@@ -192,7 +192,7 @@ namespace Microsoft.Web.Redis.Tests
             RedisConnectionWrapper redisConn = new RedisConnectionWrapper(Utility.GetDefaultConfigUtility(), id);
             redisConn.redisConnection = A.Fake<IRedisClientConnection>();
 
-            object[] sessionData = { "Key", RedisUtility.GetBytesFromObject("value") };
+            object[] sessionData = { "Key", RedisUtility.GetBytesFromObject("Key", "value") };
             object[] returnFromRedis = { "", sessionData, "15" };
             ChangeTrackingSessionStateItemCollection sessionDataReturn = Utility.GetChangeTrackingSessionStateItemCollection();
             sessionDataReturn["key"] = "value";

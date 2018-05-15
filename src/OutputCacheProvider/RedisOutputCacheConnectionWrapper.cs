@@ -53,10 +53,10 @@ namespace Microsoft.Web.Redis
             key = GetKeyForRedis(key);
             TimeSpan expiryTime = utcExpiry - DateTime.UtcNow;
             string[] keyArgs = new string[] { key };
-            object[] valueArgs = new object[] { redisUtility.GetBytesFromObject(entry), (long) expiryTime.TotalMilliseconds };
+            object[] valueArgs = new object[] { redisUtility.GetBytesFromObject(key, entry), (long) expiryTime.TotalMilliseconds };
 
             object rowDataFromRedis = redisConnection.Eval(addScript, keyArgs, valueArgs);
-            return redisUtility.GetObjectFromBytes(redisConnection.GetOutputCacheDataFromResult(rowDataFromRedis));
+            return redisUtility.GetObjectFromBytes(key, redisConnection.GetOutputCacheDataFromResult(rowDataFromRedis));
         }
 
 /*-------End of Add operation-----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -64,7 +64,7 @@ namespace Microsoft.Web.Redis
         public void Set(string key, object entry, DateTime utcExpiry)
         {
             key = GetKeyForRedis(key);
-            byte[] data = redisUtility.GetBytesFromObject(entry);
+            byte[] data = redisUtility.GetBytesFromObject(key, entry);
             redisConnection.Set(key, data, utcExpiry);
         }
 
@@ -72,7 +72,7 @@ namespace Microsoft.Web.Redis
         {
             key = GetKeyForRedis(key);
             byte[] data = redisConnection.Get(key);
-            return redisUtility.GetObjectFromBytes(data);
+            return redisUtility.GetObjectFromBytes(key, data);
         }
 
         public void Remove(string key)

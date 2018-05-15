@@ -174,14 +174,14 @@ namespace Microsoft.Web.Redis
             }
             else
             {
-                innerCollection[normalizedName] = new ValueWrapper(value);
+                innerCollection[normalizedName] = new ValueWrapper(normalizedName, value);
             }
         }
 
         internal void SetData(string name, byte[] value)
         {
             name = GetSessionNormalizedKeyToUse(name);
-            innerCollection[name] = new ValueWrapper(value);
+            innerCollection[name] = new ValueWrapper(name, value);
         }
         
         public override IEnumerator GetEnumerator()

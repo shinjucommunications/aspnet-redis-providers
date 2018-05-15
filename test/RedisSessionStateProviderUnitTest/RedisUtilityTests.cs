@@ -101,29 +101,29 @@ namespace Microsoft.Web.Redis.Tests
         [Fact]
         public void GetBytesFromObject_WithNullObject()
         {
-            Assert.IsType<Byte[]>(RedisUtility.GetBytesFromObject(null));
+            Assert.IsType<Byte[]>(RedisUtility.GetBytesFromObject("TEST", null));
         }
 
         [Fact]
         public void GetBytesFromObject_WithValidObject()
         {
             Object obj = "hi";
-            Assert.NotEqual(null, RedisUtility.GetBytesFromObject(obj));
+            Assert.NotEqual(null, RedisUtility.GetBytesFromObject("TEST", obj));
         }
 
         [Fact]
         public void GetObjectFromBytes_WithNullObject()
         {
-            Assert.Equal(null, RedisUtility.GetObjectFromBytes(null));
+            Assert.Equal(null, RedisUtility.GetObjectFromBytes("TEST", null));
         }
 
         [Fact]
         public void GetObjectFromBytes_WithValidObject()
         {
             Object obj = "hi";
-            byte[] data = RedisUtility.GetBytesFromObject(obj);
+            byte[] data = RedisUtility.GetBytesFromObject("TEST", obj);
 
-            Assert.Equal(obj.ToString(), RedisUtility.GetObjectFromBytes(data).ToString());
+            Assert.Equal(obj.ToString(), RedisUtility.GetObjectFromBytes("TEST", data).ToString());
         }
 
         [Fact]
@@ -132,10 +132,10 @@ namespace Microsoft.Web.Redis.Tests
             byte[] data = new byte[1];
             data[0] = 0;
 
-            byte[] serializedData = RedisUtility.GetBytesFromObject(data);
+            byte[] serializedData = RedisUtility.GetBytesFromObject("TEST", data);
             Assert.NotNull(serializedData);
             
-            byte[] deserializedData = (byte[]) RedisUtility.GetObjectFromBytes(serializedData);
+            byte[] deserializedData = (byte[]) RedisUtility.GetObjectFromBytes("TEST", serializedData);
             Assert.NotNull(deserializedData);
             Assert.Equal(deserializedData.Length, data.Length);
             Assert.Equal(data[0], deserializedData[0]);
@@ -145,9 +145,9 @@ namespace Microsoft.Web.Redis.Tests
         public void GetObjectFromBytes_GetBytesFromObject_WithEmptyByteArray()
         {
             byte[] data = new byte[0];
-            byte[] serializedData = RedisUtility.GetBytesFromObject(data);
+            byte[] serializedData = RedisUtility.GetBytesFromObject("TEST", data);
             Assert.NotNull(serializedData);
-            byte[] deserializedData = (byte[])RedisUtility.GetObjectFromBytes(serializedData);
+            byte[] deserializedData = (byte[])RedisUtility.GetObjectFromBytes("TEST", serializedData);
             Assert.NotNull(deserializedData);
             Assert.Equal(deserializedData.Length, data.Length);
         }
@@ -167,8 +167,8 @@ namespace Microsoft.Web.Redis.Tests
             var serTypeName = typeof(TestSerializer).AssemblyQualifiedName;
             var utility = new RedisUtility(new ProviderConfiguration() { RedisSerializerType = serTypeName });
 
-            var bytes = utility.GetBytesFromObject("test");
-            var obj = utility.GetObjectFromBytes(bytes);
+            var bytes = utility.GetBytesFromObject("TEST", "test");
+            var obj = utility.GetObjectFromBytes("TEST", bytes);
             var testSerializer = (TestSerializer) utility._serializer;
             Assert.Equal("test", obj);
             Assert.Equal(1, testSerializer.DeserializeCount);

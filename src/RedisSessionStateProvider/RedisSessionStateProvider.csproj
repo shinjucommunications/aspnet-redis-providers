@@ -101,6 +101,9 @@
     <Compile Include="..\Shared\ValueWrapper.cs">
       <Link>ValueWrapper.cs</Link>
     </Compile>
+    <Compile Include="..\Shared\ICustomSerializable.cs">
+      <Link>ICustomSerializable.cs</Link>
+    </Compile>
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="ICacheConnection.cs" />
     <Compile Include="RedisConnectionWrapper.cs" />

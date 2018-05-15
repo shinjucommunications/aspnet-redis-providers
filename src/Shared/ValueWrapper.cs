@@ -8,15 +8,18 @@ namespace Microsoft.Web.Redis
     internal class ValueWrapper
     {
         object _actualValue;
+        private readonly string key;
         byte[] _serializedvalue;
 
-        public ValueWrapper(byte[] serializedvalue)
+        public ValueWrapper(string key, byte[] serializedvalue)
         {
+            this.key = key;
             _serializedvalue = serializedvalue;
         }
 
-        public ValueWrapper(object actualValue)
+        public ValueWrapper(string key, object actualValue)
         {
+            this.key = key;
             _actualValue = actualValue;
         }
 
@@ -24,7 +27,7 @@ namespace Microsoft.Web.Redis
         {
             if (_actualValue == null)
             {
-                _actualValue = utility.GetObjectFromBytes(_serializedvalue);
+                _actualValue = utility.GetObjectFromBytes(key, _serializedvalue);
             }
             return _actualValue;
         }

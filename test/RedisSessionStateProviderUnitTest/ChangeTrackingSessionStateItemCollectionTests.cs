@@ -237,7 +237,7 @@ namespace Microsoft.Web.Redis.Tests
         {
             RedisUtility utility = new RedisUtility(Utility.GetDefaultConfigUtility());
             ChangeTrackingSessionStateItemCollection items = Utility.GetChangeTrackingSessionStateItemCollection();
-            items.SetData("Test", utility.GetBytesFromObject("v1"));
+            items.SetData("Test", utility.GetBytesFromObject("Test", "v1"));
             items.Dirty = false;
 
             Assert.False(items.Dirty);
@@ -254,8 +254,8 @@ namespace Microsoft.Web.Redis.Tests
         {
             RedisUtility utility = new RedisUtility(Utility.GetDefaultConfigUtility());
             ChangeTrackingSessionStateItemCollection items = Utility.GetChangeTrackingSessionStateItemCollection();
-            items.SetData("k1", utility.GetBytesFromObject("v1"));
-            items.SetData("k2", utility.GetBytesFromObject("v2"));
+            items.SetData("k1", utility.GetBytesFromObject("k1", "v1"));
+            items.SetData("k2", utility.GetBytesFromObject("k2", "v2"));
 
             try
             {
@@ -276,8 +276,8 @@ namespace Microsoft.Web.Redis.Tests
         {
             RedisUtility utility = new RedisUtility(Utility.GetDefaultConfigUtility());
             ChangeTrackingSessionStateItemCollection items = Utility.GetChangeTrackingSessionStateItemCollection();
-            items.SetData("k1", utility.GetBytesFromObject("v1"));
-            items.SetData("k2", utility.GetBytesFromObject("v2"));
+            items.SetData("k1", utility.GetBytesFromObject("k1", "v1"));
+            items.SetData("k2", utility.GetBytesFromObject("k2", "v2"));
 
             try
             {
@@ -298,8 +298,8 @@ namespace Microsoft.Web.Redis.Tests
         {
             RedisUtility utility = new RedisUtility(Utility.GetDefaultConfigUtility());
             ChangeTrackingSessionStateItemCollection items = Utility.GetChangeTrackingSessionStateItemCollection();
-            items.SetData("k1", utility.GetBytesFromObject("v1"));
-            items.SetData("k2", utility.GetBytesFromObject("v2"));
+            items.SetData("k1", utility.GetBytesFromObject("k1", "v1"));
+            items.SetData("k2", utility.GetBytesFromObject("k2", "v2"));
 
             Assert.Equal(2, items.Count);
             items["k3"] = "v3";

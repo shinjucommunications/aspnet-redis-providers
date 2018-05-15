@@ -10,6 +10,8 @@ namespace Microsoft.Web.Redis
 {
     internal sealed class RedisUtility
     {
+        public static ICustomSerializable[] CustomSerializers = new ICustomSerializable[0];
+
         private readonly ProviderConfiguration _configuration;
         internal readonly ISerializer _serializer;
 
@@ -55,7 +57,7 @@ namespace Microsoft.Web.Redis
                 foreach (string key in sessionItems.GetModifiedKeys())
                 {
                     list.Add(key);
-                    list.Add(GetBytesFromObject(sessionItems[key]));
+                    list.Add(GetBytesFromObject(key, sessionItems[key]));
                     noOfItemsUpdated++;
                 }
             }
@@ -68,18 +70,34 @@ namespace Microsoft.Web.Redis
             foreach (string key in sessionItems.Keys)
             {
                 list.Add(key);
-                list.Add(GetBytesFromObject(sessionItems[key]));
+                list.Add(GetBytesFromObject(key, sessionItems[key]));
             }
             return list;
         }
 
-        internal byte[] GetBytesFromObject(object data)
+        internal byte[] GetBytesFromObject(string key, object data)
         {
+            foreach (ICustomSerializable customSerializer in CustomSerializers)
+            {
+                if (customSerializer.MatchKey(key, data))
+                {
+                    return customSerializer.GetBytesFromObject(data);
+                }
+            }
+
             return _serializer.Serialize(data);
         }
 
-        internal object GetObjectFromBytes(byte[] dataAsBytes)
+        internal object GetObjectFromBytes(string key, byte[] dataAsBytes)
         {
+            foreach (ICustomSerializable customSerializer in CustomSerializers)
+            {
+                if (customSerializer.MatchKey(key))
+                {
+                    return customSerializer.GetObjectFromBytes(dataAsBytes);
+                }
+            }
+
             return _serializer.Deserialize(dataAsBytes);
         }
     }

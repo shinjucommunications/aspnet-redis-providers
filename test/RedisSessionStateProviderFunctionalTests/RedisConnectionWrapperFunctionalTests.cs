@@ -72,7 +72,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection dataFromRedis = new ChangeTrackingSessionStateItemCollection(testSerializerRedisUtility);
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    dataFromRedis[entry.Name] = testSerializerRedisUtility.GetObjectFromBytes(entry.Value).ToString();
+                    dataFromRedis[entry.Name] = testSerializerRedisUtility.GetObjectFromBytes(entry.Name, entry.Value).ToString();
                 }
                 Assert.Equal("value", dataFromRedis["key"]);
                 Assert.Equal("value1", dataFromRedis["key1"]);
@@ -110,7 +110,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection dataFromRedis = new ChangeTrackingSessionStateItemCollection(new RedisUtility(pc));
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    dataFromRedis[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Value).ToString();
+                    dataFromRedis[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Name, entry.Value).ToString();
                 }
                 Assert.Equal("value", dataFromRedis["key"]);
                 Assert.Equal("value1", dataFromRedis["key1"]);
@@ -148,7 +148,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection dataFromRedis = new ChangeTrackingSessionStateItemCollection(new RedisUtility(pc));
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    dataFromRedis[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Value);
+                    dataFromRedis[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Name, entry.Value);
                 }
                 Assert.Equal("value", dataFromRedis["key"]);
                 Assert.Equal(null, dataFromRedis["key1"]);
@@ -593,7 +593,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection sessionDataFromRedisAsCollection = new ChangeTrackingSessionStateItemCollection(new RedisUtility(pc));
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Value).ToString();
+                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Name, entry.Value).ToString();
                 }
                 Assert.Equal("value1", sessionDataFromRedisAsCollection["key1"]);
                 Assert.Equal("value2-updated", sessionDataFromRedisAsCollection["key2"]);
@@ -642,7 +642,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection sessionDataFromRedisAsCollection = new ChangeTrackingSessionStateItemCollection(new RedisUtility(pc));
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Value).ToString();
+                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Name, entry.Value).ToString();
                 }
                 Assert.Equal("value1", sessionDataFromRedisAsCollection["key1"]);
                 Assert.Equal("value2-updated", sessionDataFromRedisAsCollection["key2"]);
@@ -692,7 +692,7 @@ namespace Microsoft.Web.Redis.FunctionalTests
                 ChangeTrackingSessionStateItemCollection sessionDataFromRedisAsCollection = new ChangeTrackingSessionStateItemCollection(new RedisUtility(pc));
                 foreach (HashEntry entry in sessionDataFromRedis)
                 {
-                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Value).ToString();
+                    sessionDataFromRedisAsCollection[entry.Name] = RedisUtility.GetObjectFromBytes(entry.Name, entry.Value).ToString();
                 }
                 Assert.Equal("value1", sessionDataFromRedisAsCollection["key1"]);
                 Assert.Equal("value2", sessionDataFromRedisAsCollection["key2"]);
