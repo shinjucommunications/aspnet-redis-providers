@@ -15,7 +15,7 @@ namespace Microsoft.Web.Redis
         private readonly ProviderConfiguration _configuration;
         internal readonly ISerializer _serializer;
 
-        public RedisUtility(ProviderConfiguration configuration)
+        internal RedisUtility(ProviderConfiguration configuration)
         {
             _configuration = configuration;
             _serializer = GetSerializer();
@@ -35,7 +35,7 @@ namespace Microsoft.Web.Redis
             return new BinarySerializer();
         }
 
-        public int AppendRemoveItemsInList(ChangeTrackingSessionStateItemCollection sessionItems, List<object> list)
+        internal int AppendRemoveItemsInList(ChangeTrackingSessionStateItemCollection sessionItems, List<object> list)
         {
             int noOfItemsRemoved = 0;
             if (sessionItems.GetDeletedKeys() != null && sessionItems.GetDeletedKeys().Count != 0)
@@ -49,7 +49,7 @@ namespace Microsoft.Web.Redis
             return noOfItemsRemoved;
         }
 
-        public int AppendUpdatedOrNewItemsInList(ChangeTrackingSessionStateItemCollection sessionItems, List<object> list)
+        internal int AppendUpdatedOrNewItemsInList(ChangeTrackingSessionStateItemCollection sessionItems, List<object> list)
         {
             int noOfItemsUpdated = 0;
             if (sessionItems.GetModifiedKeys() != null && sessionItems.GetModifiedKeys().Count != 0)
@@ -64,7 +64,7 @@ namespace Microsoft.Web.Redis
             return noOfItemsUpdated;
         }
 
-        public List<object> GetNewItemsAsList(ChangeTrackingSessionStateItemCollection sessionItems)
+        internal List<object> GetNewItemsAsList(ChangeTrackingSessionStateItemCollection sessionItems)
         {
             List<object> list = new List<object>(sessionItems.Keys.Count * 2);
             foreach (string key in sessionItems.Keys)
