@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.Web.Redis
 {
-    internal sealed class RedisUtility
+    public sealed class RedisUtility
     {
         public static ICustomSerializable[] CustomSerializers = new ICustomSerializable[0];
 
