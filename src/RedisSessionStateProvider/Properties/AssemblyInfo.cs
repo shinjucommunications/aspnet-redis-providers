@@ -10,18 +10,18 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SessionStateProvider")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+//[assembly: AssemblyDescription("")]
+//[assembly: AssemblyConfiguration("")]
+//[assembly: AssemblyCompany("")]
+//[assembly: AssemblyProduct("SessionStateProvider")]
+//[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyMetadata("Serviceable", "True")]
 
 #if !CODESIGNING
-[assembly: InternalsVisibleTo("Microsoft.Web.RedisSessionStateProvider.Unit.Tests")]
-[assembly: InternalsVisibleTo("Microsoft.Web.RedisSessionStateProvider.Functional.Tests")]
+[assembly: InternalsVisibleTo("RedisSessionStateProvider.UnitTest")]
+[assembly: InternalsVisibleTo("RedisSessionStateProvider.FunctionalTests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 #endif
 
@@ -30,10 +30,10 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 #if !NOCOMMONASSEMBLYVERSION
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+//[assembly: AssemblyVersion("1.1.0.0")]
+//[assembly: AssemblyFileVersion("1.1.0.0")]
 #endif
-[assembly: AssemblyTitle("Cache Providers")]
+//[assembly: AssemblyTitle("Cache Providers")]
 
 namespace System.Reflection
 {

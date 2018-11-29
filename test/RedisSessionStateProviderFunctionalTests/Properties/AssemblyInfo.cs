@@ -12,9 +12,9 @@ using Xunit;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SessionStateProvider.FunctionalTests")]
+//[assembly: AssemblyConfiguration("")]
+//[assembly: AssemblyCompany("")]
+//[assembly: AssemblyProduct("SessionStateProvider.FunctionalTests")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -25,7 +25,7 @@ using Xunit;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 #if !NOCOMMONASSEMBLYVERSION
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+//[assembly: AssemblyVersion("1.1.0.0")]
+//[assembly: AssemblyFileVersion("1.1.0.0")]
 #endif
-[assembly: AssemblyTitle("Cache Providers")]
+//[assembly: AssemblyTitle("Cache Providers")]
