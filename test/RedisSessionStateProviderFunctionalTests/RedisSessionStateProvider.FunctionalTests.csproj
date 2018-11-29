@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{15966E25-0F7C-472A-B835-D2606CD035ED}</ProjectGuid>
     <TargetFrameworks>net461;net472</TargetFrameworks>
+    <RestorePackagesPath>packages</RestorePackagesPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\Shared\RedisServer.cs">
